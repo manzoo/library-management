@@ -1,0 +1,24 @@
+
+.left-align{
+  text-align: left;
+}
+.space{
+
+  margin: 1em, 1em, 1em, 1em;
+}
+
+.highlight{
+  color: red;
+  background-color:burlywood;
+}
+
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}
+.amber{
+  color: yellow;
+}
+

@@ -1,0 +1,38 @@
+<h1>List of Books</h1>
+<div class="row">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ISBN</th>
+        <th>Authors</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books" [class.highlight]="book.url">
+        <td>
+          <span *ngIf="!book.url">{{book.name}}</span>
+          <span *ngIf="book.url"><a [attr.href]="book.url">{{book.name}}</a></span>
+        </td>
+        <td [ngClass]="getHighlightClass(book)">{{book.isbn}}</td>
+        <td [ngStyle]="getSyle(book)">
+          <div *ngFor="let auth of book.authors">
+            <span  class="badge badge-info space">{{auth}}</span>
+          </div>
+        </td>
+        <td [ngSwitch]="book.countryCode" [ngClass]="{red: book.price > 200, green : book.price < 100 , amber: book.price > 100 && book.price< 200}">
+          <span *ngSwitchCase="'IN'">Rs.</span>
+          <span *ngSwitchCase="'US'">$</span>
+          <span *ngSwitchDefault>#</span>
+          {{book.price}}
+        </td>
+        <td>
+            <button class="btn-primary left-align" (click)= "editBook(book)" [hidden]="book.isEditable" >Edit </button>
+            <button class="btn-primary" (click)= "deleteBook()">Delete </button>
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

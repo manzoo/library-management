@@ -1,62 +1,4 @@
-import { Injectable } from '@angular/core'
-
-@Injectable()
-export class BookService{
-  getBooks(){
-
-    return BOOKS;
-  }
-  getOldBooks(){
-    return OLD_BOOKS;
-  }
-
-  getByIsbn(isbn:string){
-    return BOOKS.find( a => a.isbn === isbn);
-  }
-}
-const OLD_BOOKS = [{
-  id: 1,
-  name: "Monk who sold ferrari",
-  isbn : "sds",
-  authors : ["Swamy Aathmananda"],
-  price : 1800,
-  countryCode :"IN",
-  isEditable : true
-},{
-  id: 2,
-  name: "Learn JS in 1 week",
-  isbn : "sdsdsdsdsd",
-  authors : ["Zubar","Sachita"],
-  price : 0,
-  countryCode :"IN",
-  isEditable : true
-},{
-  id: 3,
-  name: "C# in depth",
-  isbn : "sdsdsdsdsd",
-  authors : ["John Skeet","xyz"],
-  price : 134,
-  countryCode :"US",
-  url: "www.google.com",
-  isEditable : false
-},{
-  id: 4,
-  name: "C# in depth",
-  isbn : "",
-  authors : ["John Skeet","xyz"],
-  price : 286,
-  countryCode :"IN",
-  isEditable : true
-},{
-  id: 5,
-  name: "You know nothing!!!",
-  isbn : "ISBN2879287289",
-  authors : ["John Snow"],
-  price : 111114,
-  countryCode :"UK",
-  isEditable : false
-}];
-const BOOKS = [
+[
   {
     "title": "Unlocking Android",
     "isbn": "1933988673",
@@ -4523,4 +4465,3 @@ const BOOKS = [
     "categories": []
   }
 ]
-
