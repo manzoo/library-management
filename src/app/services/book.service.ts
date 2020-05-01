@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
-import { Subject } from "rxjs";
+import { Subject, Observable} from "rxjs";
+import { IBook } from '../models/book.model';
 
 @Injectable()
 export class BookService{
-  getBooks(){
-    let subject = new Subject();
+  getBooks():Observable<IBook[]>{
+    let subject = new Subject<IBook[]>();
     setTimeout(() => {
       subject.next(BOOKS);
       subject.complete();
@@ -15,7 +16,7 @@ export class BookService{
     return OLD_BOOKS;
   }
 
-  getByIsbn(isbn:string){
+  getByIsbn(isbn:string): IBook{
     return BOOKS.find( a => a.isbn === isbn);
   }
 }
@@ -61,7 +62,7 @@ const OLD_BOOKS = [{
   countryCode :"UK",
   isEditable : false
 }];
-const BOOKS = [
+const BOOKS : IBook[] = [
   {
     "title": "Unlocking Android",
     "isbn": "1933988673",
@@ -306,6 +307,7 @@ const BOOKS = [
   },
   {
     "title": "Hibernate in Action (Chinese Edition)",
+    "isbn": "",
     "pageCount": 400,
     "publishedDate": { "$date": "1999-06-01T00:00:00.000-0700" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/bauer-cn.jpg",
