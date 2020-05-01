@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core'
+import { Subject } from "rxjs";
 
 @Injectable()
 export class BookService{
   getBooks(){
-
-    return BOOKS;
+    let subject = new Subject();
+    setTimeout(() => {
+      subject.next(BOOKS);
+      subject.complete();
+    }, 100);
+    return subject;
   }
   getOldBooks(){
     return OLD_BOOKS;

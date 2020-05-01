@@ -8,6 +8,7 @@ import { BookService } from './services/book.service';
 import { ToastrService } from "./services/toastr.service";
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { OldBooksComponent } from './old-books/old-books.component';
+import { BooksResolver } from "./services/book.resolver.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,10 @@ import { OldBooksComponent } from './old-books/old-books.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [BookService, ToastrService],
+  providers: [BookService,
+    ToastrService,
+    BooksResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
