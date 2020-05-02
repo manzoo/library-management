@@ -1,0 +1,8 @@
+.error input {
+  border-color: red;
+  border-width: 1px;
+}
+
+span {
+  color: red;
+}

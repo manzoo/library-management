@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-10"><h1>List of Authors</h1></div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" [routerLink]="['/authors/create']">Add New</button>
+  </div>
+</div>
+<div class="row">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>EMail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of authors">
+        <td>{{author.firstName + " " + author.lastName}}</td>
+        <td> {{author.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

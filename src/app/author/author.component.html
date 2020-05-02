@@ -1,0 +1,28 @@
+<div>
+  <h1>Enter Author information here !</h1>
+  <hr/>
+  <div class="col-md-4">
+
+   <form [formGroup]="authorForm" (ngSubmit)="saveAuthor(authorForm.value)" autocomplete="off" novalidate>
+
+    <div class="form-group" [class.error]="!isFirstNameVald()">
+      <label for="firstName">First Name :</label>
+      <input formControlName="firstName" id="firstName" type="text" class="form-control"/>
+      <span *ngIf="!isFirstNameVald()">Required</span>
+    </div>
+    <div class="form-group" [class.error]="!isLastNameVald()">
+      <label for="lastName">Last Name :</label>
+      <input formControlName="lastName" id="lastName" type="text" class="form-control"/>
+      <span *ngIf="!isLastNameVald()">Required</span>
+    </div>
+    <div class="form-group" [class.error]="!isEmailVald()">
+      <label for="email">Email :</label>
+      <input formControlName="email" id="email" type="text" class="form-control"/>
+      <span *ngIf="!isEmailVald() && authorForm.controls.email.errors.required">Required</span>
+      <span *ngIf="!isEmailVald() && authorForm.controls.email.errors.email">Must be a valid email</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+   </form>
+  </div>
+</div>
