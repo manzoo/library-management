@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BookService } from './../services/book.service';
-import { ToastrService } from "./../services/toastr.service";
+import { TOASTR_TOKEN, Toastr, JQ_TOKEN } from "./../services/index";
 import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-books',
@@ -9,19 +9,34 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class BooksComponent implements OnInit {
 
-books = []
-  constructor( private bookService : BookService, private toastr: ToastrService, private route:ActivatedRoute) { }
+  books = [];
+  searchTerm: string = "";
+  constructor(
+    private bookService: BookService,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr,
+    @Inject(JQ_TOKEN) private $: any,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.books = this.route.snapshot.data["books"]
   }
 
-  editBook(book:any){
+  editBook(book: any) {
 
     this.toastr.success(book.name)
 
   }
-  deleteBook(){
+  deleteBook() {
 
+  }
+
+  add() {
+    console.log("clicked")
+  }
+
+  search(searchForm) {
+    if (searchForm.searchTerm) {
+      this.books = this.bookService.search(searchForm.searchTerm);
+    }
   }
 }

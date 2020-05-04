@@ -4,15 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
-import { BookService } from './services/book.service';
-import { ToastrService } from "./services/toastr.service";
+import { BookService, BooksResolver,AuthorService, TOASTR_TOKEN,Toastr, JQ_TOKEN  } from './services/index';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { OldBooksComponent } from './old-books/old-books.component';
-import { BooksResolver } from "./services/book.resolver.service";
 import { AuthorsComponent } from './authors/authors.component';
-import { AuthorService } from './services/author.service';
 import { AuthorComponent } from './author/author.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
+let toastr:Toastr = window["toastr"];
+let jQuery = window["$"];
 
 @NgModule({
   declarations: [
@@ -21,17 +24,25 @@ import { ReactiveFormsModule } from "@angular/forms";
     BookDetailsComponent,
     OldBooksComponent,
     AuthorsComponent,
-    AuthorComponent
+    AuthorComponent,
+    ModalDialogComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [BookService,
-    ToastrService,
+    {
+      provide : TOASTR_TOKEN,
+      useValue : toastr
+    },
     BooksResolver,
-    AuthorService
+    { provide: JQ_TOKEN, useValue:jQuery },
+    { provide: AuthorService, useClass:AuthorService }
   ],
   bootstrap: [AppComponent]
 })

@@ -19,6 +19,14 @@ export class BookService{
   getByIsbn(isbn:string): IBook{
     return BOOKS.find( a => a.isbn === isbn);
   }
+
+  search(searchTerm:string){
+    let term = searchTerm.toLocaleLowerCase();
+    var matchedBooks = BOOKS.filter(a =>
+      a.title.toLocaleLowerCase().indexOf(term) > -1
+    )
+    return matchedBooks;
+  }
 }
 const OLD_BOOKS = [{
   id: 1,

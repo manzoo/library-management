@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BookService } from './../services/book.service';
-import { ToastrService } from "./../services/toastr.service";
+import { TOASTR_TOKEN, Toastr } from "./../services/toastr.service";
 
 @Component({
   selector: 'app-old-books',
@@ -10,7 +10,8 @@ import { ToastrService } from "./../services/toastr.service";
 export class OldBooksComponent implements OnInit {
 
   books = []
-  constructor( private bookService : BookService, private toastr: ToastrService) { }
+  constructor( private bookService : BookService,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr) { }
 
   ngOnInit(): void {
     this.books = this.bookService.getOldBooks();

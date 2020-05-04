@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthor } from '../models';
 import { AuthorService } from '../services/author.service';
-import { ToastrService } from '../services/toastr.service';
+import { TOASTR_TOKEN, Toastr } from '../services/toastr.service';
 
 @Component({
   selector: 'app-author',
@@ -17,8 +17,9 @@ export class AuthorComponent implements OnInit {
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
-  constructor(private router: Router, private authorService: AuthorService,
-    private notificationService: ToastrService) { }
+  constructor(private router: Router,
+    private authorService: AuthorService,
+    @Inject(TOASTR_TOKEN) private notificationService: Toastr) { }
 
   ngOnInit(): void {
 
