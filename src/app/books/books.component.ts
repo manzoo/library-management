@@ -11,6 +11,7 @@ export class BooksComponent implements OnInit {
 
   books = [];
   searchTerm: string = "";
+  searched :boolean = false;
   constructor(
     private bookService: BookService,
     @Inject(TOASTR_TOKEN) private toastr: Toastr,
@@ -35,8 +36,14 @@ export class BooksComponent implements OnInit {
   }
 
   search(searchForm) {
-    if (searchForm.searchTerm) {
-      this.books = this.bookService.search(searchForm.searchTerm);
-    }
+
+    this.books = this.bookService.search(searchForm.searchTerm);
+    this.searched = true;
+  }
+
+  public clearSearch() {
+    this.books = this.bookService.search("");
+    this.searchTerm ="";
+    this.searched = false;
   }
 }

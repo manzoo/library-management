@@ -1,10 +1,13 @@
 <div class="row">
   <div class="col-md-4"><h1>List of Books</h1></div>
-  <div class="col-md-2"></div>
+  <div class="col-md-2">
+
+  </div>
   <div class="col-md-4">
     <form #searchForm="ngForm" (ngSubmit)="search(searchForm.value)" autocomplete="off" novalidate class="form-inline my-2 my-lg-0">
-      <input [(ngModel)]="searchTerm" name="searchTerm" id="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input [(ngModel)]="searchTerm" name="searchTerm" id="searchTerm" type="text" class="form-control">
+      <button class="btn btn-outline-success my-2 my-sm-0" [hidden] ="searched" type="submit">Search</button>
+      <button class="btn btn-default my-2 my-sm-0" (click)="clearSearch()" [hidden] ="!searched" type="button">Clear</button>
     </form>
   </div>
   <div class="col-md-2">
